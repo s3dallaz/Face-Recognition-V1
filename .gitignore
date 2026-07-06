@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+venv/
+
+# VSCode
+.vscode/
+
+# Face Database
+database/
+
+# Dataset
+dataset/
+
+# OS
+.DS_Store
+Thumbs.db
