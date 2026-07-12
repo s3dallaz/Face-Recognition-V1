@@ -1,15 +1,20 @@
 import cv2 as cv
 
 
-def draw_rectangle(frame , face_locations):
+def draw_rectangle(frame, location, color):
 
-    for location in face_locations:
-        top , right , bottom , left = location
+    top, right, bottom, left = location
 
-        top_left = (left , top  )
-        bottom_right = ( right , bottom )
+    top_left = (left, top)
+    bottom_right = (right, bottom)
 
-        cv.rectangle(frame , top_left , bottom_right , color = (0,255,0),  thickness=4)
+    cv.rectangle(
+        frame,
+        top_left,
+        bottom_right,
+        color=color,
+        thickness=4
+    )
 
     return frame
 

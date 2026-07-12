@@ -24,7 +24,6 @@ def recognize_face(current_encoding, known_encodings, known_names , threshold = 
 
     best_name = known_names[best_match]
 
-    print(best_name)
     return best_name
 
 

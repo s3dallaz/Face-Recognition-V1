@@ -11,6 +11,9 @@ print("Main started")
 
 known_encodings , known_names = load_database(EMBEDDINGS_PATH)
 
+color_red = (0,0,255)
+color_green = (0,255,0)
+
 
 cap = cv.VideoCapture(0)
 
@@ -29,7 +32,8 @@ while True:
 
     location_connector = zip(encodings , face_locations)
     
-    frame = draw_rectangle(frame, face_locations)
+    
+
 
     for encode , location in location_connector:
 
@@ -37,13 +41,22 @@ while True:
 
         name = recognize_face(encode , known_encodings , known_names , threshold= 0.6)
 
+
+        if name == "Unknown":
+            color = color_red
+            frame = draw_rectangle(frame, location, color)
+
+        else:
+            color = color_green
+            frame = draw_rectangle(frame, location, color)
+
         cv.putText(
             frame,
             name,
-            (left, top-30),
+            (left, max(20, top - 10)),
             fontFace= cv.FONT_HERSHEY_SIMPLEX,
             fontScale= 0.7,
-            color= (0,255,0),
+            color= color,
             thickness= 2
             )
 
