@@ -7,12 +7,11 @@ from recognizer import recognize_face
 from visualization import draw_rectangle
 from config import EMBEDDINGS_PATH
 
-print("Main started")
 
 known_encodings , known_names = load_database(EMBEDDINGS_PATH)
 
-color_red = (0,0,255)
-color_green = (0,255,0)
+RED = (0,0,255)
+GREEN = (0,255,0)
 
 
 cap = cv.VideoCapture(0)
@@ -27,15 +26,9 @@ while True:
     face_locations = face_detector(frame)
 
     encodings = face_encoder(frame, face_locations)
-
-    # Recognition
-
-    location_connector = zip(encodings , face_locations)
-    
     
 
-
-    for encode , location in location_connector:
+    for encode , location in zip(encodings , face_locations):
 
         top, right, bottom, left = location
 
@@ -43,12 +36,12 @@ while True:
 
 
         if name == "Unknown":
-            color = color_red
-            frame = draw_rectangle(frame, location, color)
-
+            color = RED
+            
         else:
-            color = color_green
-            frame = draw_rectangle(frame, location, color)
+            color = GREEN
+
+        frame = draw_rectangle(frame, location, color)
 
         cv.putText(
             frame,
