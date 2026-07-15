@@ -20,11 +20,11 @@ def recognize_face(current_encoding, known_encodings, known_names , threshold = 
 
     if best_distance > threshold:
 
-        return "unknown"
+        return "Unknown", best_distance
 
     best_name = known_names[best_match]
 
-    return best_name
+    return best_name , best_distance
 
 
 

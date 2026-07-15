@@ -7,10 +7,17 @@ from face_encoder import face_encoder
 from config import DATASET_PATH
 
 
-def build_database(dataset_path , embeddings_path):
+def build_database(dataset_path , embeddings_path , person_name= None):
 
 
-    ds_content = os.listdir(dataset_path)
+    new_encodings = []
+    new_names = []
+
+    if person_name is None:
+        ds_content = os.listdir(dataset_path)
+
+    else:
+        ds_content = [person_name]
 
     for folder_name in ds_content:
 
@@ -47,6 +54,11 @@ def build_database(dataset_path , embeddings_path):
             img_encodes_paths = os.path.join(person_database_path , new_name)
 
             np.save(img_encodes_paths , encoding[0])
+
+            new_encodings.append(encoding[0])
+            new_names.append(folder_name)
+
             
+    return new_encodings, new_names
 
 
